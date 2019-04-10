@@ -91,7 +91,7 @@ func (g *ListUndirectedGraph) doDFS(i int, visited []bool)  {
 	visited[i] = true
 	fmt.Printf("%c ", g.Vertex[i].Data)
 	node = g.Vertex[i].FirstEdge
-	if node != nil {
+	for node != nil {
 		if !visited[node.IVertex] {
 			g.doDFS(node.IVertex, visited)
 		}
@@ -120,12 +120,12 @@ func (g *ListUndirectedGraph) BFS()  {
 				k := node.IVertex
 				if !visited[k] {
 					visited[k] = true
+					fmt.Printf("%c ", g.Vertex[k].Data)
 					queue[rear] = k
 					rear += 1
 				}
 				node = node.NextEdge
 			}
-
 		}
 	}
 	fmt.Println()

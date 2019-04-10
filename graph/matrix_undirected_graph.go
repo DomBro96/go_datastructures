@@ -135,3 +135,28 @@ func (g *MatrixUndirectedGraph) printGraph()  {
 		fmt.Println()
 	}
 }
+
+
+// 双色问题, 用来判断图是否可以使用两种颜色对顶点进行染色。使用深度优先搜索 DFS
+func (g *MatrixUndirectedGraph) Solve() bool {
+	color := make([]int, len(g.Vertex))
+	for i := 0; i < len(g.Vertex); i++ {
+		if color[i] == 0 {
+			return g.doSolve(i, 1, color)
+		}
+	}
+	return false
+}
+
+func (g *MatrixUndirectedGraph) doSolve(v, c int, color []int) bool  {
+	// 当前顶点颜色
+	color[v] = c
+	for w := g.firstVertex(v); w >= 0; w = g.nextVertex(v, w) {
+		if color[w] == c {
+			return false
+		}else if color[w] == 0 && !g.doSolve(w, -c, color){
+			return false
+		}
+	}
+	return true
+}
