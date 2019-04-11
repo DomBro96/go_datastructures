@@ -111,13 +111,42 @@ func (g *MatrixGraph) Dijkstra(v int, dist []int) {
 	}
 }
 
-func min(a, b int) int  {
-	if a <= b {
-		return a
-	}else {
-		return b
+// floyd 统计图中各个顶点间的最短路径
+// path[i][j] = k 表示 顶点i 到 顶点j 的最短路径要经过顶点 k;  dist[i][j] 表示 顶点i 到 顶点j 的最短距离
+func (g *MatrixGraph) Floyd (path, dist [][]int)  {
+	// 初始化 path 和 dist
+	for i := 0; i < len(g.Vertex); i++ {
+		for j := 0; j < len(g.Vertex); j++ {
+			dist[i][j] = g.Matrix[i][j]
+			path[i][j] = j
+		}
 	}
-}
 
+	for k := 0; k < len(g.Vertex); k++ {
+		for i := 0; i < len(g.Vertex); i++ {
+			for j := 0; j < len(g.Vertex); j++ {
+				temp := 0
+				if dist[i][k] == INF || dist[k][j] == INF {
+					temp = INF
+				}else {
+					temp = dist[i][k] + dist[k][j]
+				}
+				if dist[i][j] > temp {
+					dist[i][j] = temp
+					path[i][j] = k
+				}
+			}
+		}
+	}
+
+	fmt.Println("floyd: ")
+
+	for i := 0; i < len(g.Vertex); i++ {
+		for j := 0; j < len(g.Vertex); j++ {
+			fmt.Printf("min(%c, %c)=%d, path=%c\n", g.Vertex[i], g.Vertex[j], dist[i][j], g.Vertex[path[i][j]])
+		}
+	}
+
+}
 
 
