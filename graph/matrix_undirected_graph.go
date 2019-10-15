@@ -78,7 +78,7 @@ func (g *MatrixUndirectedGraph) nextVertex(v, w int) int  {
 func (g *MatrixUndirectedGraph) doDFS(i int, visited []bool)  {
 	visited[i] = true
 	fmt.Printf("%c ", g.Vertex[i])
-	// 递归深度遍历, 首先遍历该节点所有的临接顶点，
+	// 递归深度遍历，沿着某一未访问过的点向下遍历
 	for w := g.firstVertex(i); w >= 0; w = g.nextVertex(i, w) {
 		if ! visited[w] {
 			g.doDFS(w, visited)
@@ -89,6 +89,7 @@ func (g *MatrixUndirectedGraph) doDFS(i int, visited []bool)  {
 func (g *MatrixUndirectedGraph) DFS()  {
 	visited := make([]bool, len(g.Vertex))
 	fmt.Println("DFS: ")
+	// 依次对每个节点进行深度访问
 	for i := 0; i < len(g.Vertex); i++ {
 		if !visited[i] {
 			g.doDFS(i, visited)
@@ -97,7 +98,7 @@ func (g *MatrixUndirectedGraph) DFS()  {
 	fmt.Println()
 }
 
-// 广度优先搜索, 类似于数的层次遍历
+// 广度优先搜索, 类似于树的层次遍历，都需要用到队列
 func (g *MatrixUndirectedGraph) BFS()  {
 	head, rear := 0, 0
 	queue := make([]int, len(g.Vertex))
@@ -152,8 +153,10 @@ func (g *MatrixUndirectedGraph) doSolve(v, c int, color []int) bool  {
 	// 当前顶点颜色
 	color[v] = c
 	for w := g.firstVertex(v); w >= 0; w = g.nextVertex(v, w) {
+		// 邻接定点颜色和定点颜色相同
 		if color[w] == c {
 			return false
+		// 邻接顶点未被染色且对其染不同颜色失败
 		}else if color[w] == 0 && !g.doSolve(w, -c, color){
 			return false
 		}

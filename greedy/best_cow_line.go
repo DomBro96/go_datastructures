@@ -4,7 +4,7 @@ package greedy
 // 字典序较小的T。
 func BestCowLine(s string) string {
 	// 反转后的字符串
-	s1 := ReverseString(s)
+	s1 := ReverseString(s) 
 	sIndex, s1Index, tIndex := 0, 0, len(s1) - 1
 	// ACDBCB
 	// BCBDCA
