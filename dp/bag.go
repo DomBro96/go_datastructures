@@ -50,7 +50,7 @@ func BagDp2(weight int) int {
 	for i := 0; i < len(dp); i++ {
 		dp[i] = make([]int, weight)
 	}
-	for i := 0; i < N; i++ {
+	for i := 0; i <= N; i++ {
 		for j := 0; j <= weight; j++ {
 			if j < w[i] {
 				dp[i+1][j] = dp[i][j]
@@ -68,4 +68,22 @@ func max(a, b int) int {
 	}else {
 		return b
 	}
+}
+
+
+// 背包问题，每个物品可以任意选择个数
+func BagDp3(weight int) int {
+	//dp[i+1][j] 前i个物品重量不超过j的最大价值
+	dp := make([][]int, N+1)
+	for i := 0; i < len(dp); i++ {
+		dp[i] = make([]int, weight)
+	}
+	for i := 0; i <= N; i++ {
+		for j := 0; j <= weight; j++ {
+			for k := 0; k * w[i] <= j; k++ {
+				dp[i+1][j] = max(dp[i+1][j], dp[i][j - k*w[i]] + k*v[i])
+			}
+		}
+	}
+	return dp[N][weight]
 }
