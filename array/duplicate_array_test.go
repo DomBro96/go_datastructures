@@ -22,12 +22,3 @@ func TestFindDupNumFromArrayWithHash(t *testing.T) {
 	nums2 := []int{1, 2, 3, 0, 0, 0}
 	fmt.Println(FindDupNumFromArrayWithHash(nums2))
 }
-
-func TestFindDupNumFromArrayNoEdit(t *testing.T) {
-	nums := []int{2, 3, 5, 4, 3, 2, 6, 7}
-	fmt.Println(FindDupNumFromArrayNoEdit(nums))
-	nums1 := []int{2, 2, 5, 4, 2, 2, 6, 7}
-	fmt.Println(FindDupNumFromArrayNoEdit(nums1))
-	nums2 := []int{1, 2, 3, 4, 5, 6, 6, 7}
-	fmt.Println(FindDupNumFromArrayNoEdit(nums2))
-}
