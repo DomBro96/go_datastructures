@@ -29,21 +29,18 @@ func FullPermutation(words []string) [][]string {
 	stack := make([]string, 0, len(words))
 	ps := make([][]string, 0)
 
-	permutation(words, stack, ps)
+	permutation(words, stack, &ps)
 
 	return ps
 
 }
 
-func permutation(words []string, stack []string, ps [][]string) {
+func permutation(words []string, stack []string, ps *[][]string) {
 	if len(words) <= 0 {
-
-		cp := make([]string, 0, len(stack))
+		cp := make([]string, len(stack))
 		copy(cp, stack)
-		ps = append(ps, cp)
-
+		*ps = append(*ps, cp)
 	} else {
-
 		for i := 0; i < len(words); i++ {
 
 			ws := make([]string, 0, len(words)-1)
