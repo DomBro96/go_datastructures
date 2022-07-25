@@ -15,5 +15,4 @@ func TestPartialSummation(t *testing.T) {
 func TestFullPermutation(t *testing.T) {
 	t.Logf("words: %v, full permutation: %v", []string{"hello", "world"}, FullPermutation([]string{"hello", "world"}))
 	t.Logf("words: %v, full permutation: %v", []string{"hello", "world", "this", "is", "for", "you"}, FullPermutation([]string{"hello", "world", "this", "is", "for", "you"}))
-
 }
