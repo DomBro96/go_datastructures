@@ -43,3 +43,36 @@ func TestLinkedStack_IsEmpty(t *testing.T) {
 	}
 }
 
+func TestQueueStack_Push(t *testing.T) {
+	qStack := NewQueueStack()
+	qStack.Push(1)
+	qStack.Push(2)
+	qStack.Push(3)
+	qStack.Push(4)
+	qStack.Push(5)
+
+	for !qStack.IsEmpty() {
+		n, err := qStack.Pop()
+		t.Logf("pop: %d, err: %v", n, err)
+	}
+}
+
+func TestQueueStack_Top(t *testing.T) {
+	qStack := NewQueueStack()
+	qStack.Push(1)
+	top, err := qStack.Top()
+	t.Logf("top: %d, err: %v", top, err)
+	qStack.Push(2)
+	top, err = qStack.Top()
+	t.Logf("top: %d, err: %v", top, err)
+	qStack.Push(3)
+	top, err = qStack.Top()
+	t.Logf("top: %d, err: %v", top, err)
+	qStack.Push(4)
+	top, err = qStack.Top()
+	t.Logf("top: %d, err: %v", top, err)
+	qStack.Push(5)
+	top, err = qStack.Top()
+	t.Logf("top: %d, err: %v", top, err)
+
+}

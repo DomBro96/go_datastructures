@@ -19,12 +19,12 @@ func NewSliceQueue() *SliceQueue {
 	}
 }
 
-func (q *SliceQueue) EnQueue(i int)  {
+func (q *SliceQueue) EnQueue(i int) {
 	q.elements = append(q.elements, i)
 }
 
-func (q *SliceQueue) DeQueue() (int, error)  {
-	if ! q.IsEmpty() {
+func (q *SliceQueue) DeQueue() (int, error) {
+	if !q.IsEmpty() {
 		front := q.elements[0]
 		q.elements = q.elements[1:]
 		return front, nil
@@ -33,7 +33,7 @@ func (q *SliceQueue) DeQueue() (int, error)  {
 	}
 }
 
-func (q *SliceQueue) Front() (int, error)  {
+func (q *SliceQueue) Front() (int, error) {
 	if !q.IsEmpty() {
 		front := q.elements[0]
 		return front, nil
@@ -54,21 +54,21 @@ type LinkedQueue struct {
 func NewLinkedQueue() *LinkedQueue {
 	return &LinkedQueue{
 		head: &Node{
-			val: -1,
+			val:  -1,
 			next: nil,
 		},
 		size: 0,
 	}
 }
 
-func (q *LinkedQueue) EnQueue(i int)  {
+func (q *LinkedQueue) EnQueue(i int) {
 	newNode := &Node{
-		val: i,
+		val:  i,
 		next: nil,
 	}
 	if q.IsEmpty() {
 		q.head.next = newNode
-	}else {
+	} else {
 		curNode := q.head
 		for i := 0; i < q.size; i++ {
 			curNode = curNode.next
@@ -78,28 +78,27 @@ func (q *LinkedQueue) EnQueue(i int)  {
 	q.size += 1
 }
 
-func (q *LinkedQueue) DeQueue() (int, error)  {
+func (q *LinkedQueue) DeQueue() (int, error) {
 	if q.IsEmpty() {
 		return -1, errors.New("queue is empty. ")
-	}else {
-		front := q.head.next
-		nextNode := front.next
-		q.head.next = nextNode
-		q.size -= 1
-		return front.val, nil
 	}
+
+	front := q.head.next
+	nextNode := front.next
+	q.head.next = nextNode
+	q.size -= 1
+	return front.val, nil
 }
 
-func (q *LinkedQueue) Front() (int, error)   {
+func (q *LinkedQueue) Front() (int, error) {
 	if !q.IsEmpty() {
 		return -1, errors.New("queue is empty. ")
-	}else {
-		front := q.head.next
-		return front.val, nil
 	}
+
+	front := q.head.next
+	return front.val, nil
 }
 
-func (q *LinkedQueue) IsEmpty() bool  {
+func (q *LinkedQueue) IsEmpty() bool {
 	return q.size == 0
 }
-
