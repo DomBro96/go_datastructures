@@ -1,4 +1,4 @@
-package string_matching
+package stringmatching
 
 import (
 	"fmt"

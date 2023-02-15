@@ -6,24 +6,24 @@ import (
 )
 
 func TestReverseLinkedList(t *testing.T) {
-	n :=  &LinkedNode{
-		val: 1,
+	n := &LinkedNode{
+		val:  1,
 		next: nil,
 	}
 	n1 := &LinkedNode{
-		val: 2,
+		val:  2,
 		next: nil,
 	}
 	n2 := &LinkedNode{
-		val: 3,
+		val:  3,
 		next: nil,
 	}
 	n3 := &LinkedNode{
-		val: 4,
+		val:  4,
 		next: nil,
 	}
 	n4 := &LinkedNode{
-		val: 5,
+		val:  5,
 		next: nil,
 	}
 	n.next = n1

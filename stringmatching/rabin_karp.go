@@ -1,13 +1,11 @@
-package string_matching
-
-
+package stringmatching
 
 // RK 字符串匹配 BF 的升级版，不再逐一比较子串和模式串的字符，而是比较子串和模式串的哈希值。
 // 时间复杂度 O(N)
 
 var (
 	// 26个小写字母和素数的映射
-	key = map[byte]int {
+	key = map[byte]int{
 		'a': 1,
 		'b': 3,
 		'c': 5,
@@ -37,8 +35,7 @@ var (
 	}
 )
 
-
-func RKMatch(s, m string) (bool, int)  {
+func RKMatch(s, m string) (bool, int) {
 	sLen := len(s)
 	mLen := len(m)
 	if sLen < mLen {
@@ -46,7 +43,7 @@ func RKMatch(s, m string) (bool, int)  {
 	}
 	mHashValue := hash(m)
 	for i := 0; i < sLen-mLen+1; i++ {
-		subS := s[i:i+mLen]
+		subS := s[i : i+mLen]
 		subHashValue := hash(subS)
 		// 如果哈希值相同，判断
 		if subHashValue == mHashValue {
@@ -56,13 +53,12 @@ func RKMatch(s, m string) (bool, int)  {
 	return false, -1
 }
 
-
 // hash 函数, 保证不会有哈希冲突
-func hash(s string) int  {
+func hash(s string) int {
 	hashValue := 0
 	for i := len(s) - 1; i >= 0; i-- {
 		power := 1
-		for j := 0; j < len(s) - 1 - i; j++ {
+		for j := 0; j < len(s)-1-i; j++ {
 			power *= 26
 		}
 		hashValue += key[s[i]] * power
